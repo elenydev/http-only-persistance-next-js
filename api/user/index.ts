@@ -31,23 +31,23 @@ const logout = async () => {
 };
 
 const getUser = async (
-    userId: string
+  userId: string
 ): Promise<{ userId: string } | unknown> => {
   try {
     const request = await fetch(
-        `${process.env["NEXT_PUBLIC_API_URL"]}/user/${userId}`!,
-        {
-          method: "GET",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-            Origin: process.env["NEXT_PUBLIC_API_ORIGIN"]!,
-          },
-        }
+      `${process.env["NEXT_PUBLIC_API_URL"]}/user/${userId}`!,
+      {
+        method: "GET",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          Origin: process.env["NEXT_PUBLIC_API_ORIGIN"]!,
+        },
+      }
     );
 
     if (!request.ok) {
-      throw new Error('Fetching user failed')
+      throw new Error("Fetching user failed");
     }
 
     return await request.json();

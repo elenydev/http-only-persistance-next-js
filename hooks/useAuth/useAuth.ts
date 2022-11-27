@@ -1,5 +1,5 @@
 import { useMutation, useQuery } from "react-query";
-import { getUser, login, logout } from "./apiCalls";
+import { getUser, login, logout } from "../../api";
 import { queryClient } from "../../pages/_app";
 
 const useLogin = () =>
@@ -23,8 +23,6 @@ export const useGetUser = () => {
     typeof window !== "undefined" && window.sessionStorage.getItem("userId");
   return useQuery(["user"], () => getUser(userId || ""), {
     onSuccess: (data) => console.log(data),
-    cacheTime: Infinity,
-    staleTime: Infinity,
     retry: false,
     enabled: false,
   });
